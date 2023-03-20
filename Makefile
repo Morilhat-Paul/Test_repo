@@ -85,7 +85,7 @@ fclean: clean
 
 re: fclean all
 
-tests: re fclean_tests
+tests_run: re fclean_tests
 	@-make -s -C $(TEST_DIR)/
 	@gcovr --exclude $(TEST_DIR)/unitary/
 	@gcovr --exclude $(TEST_DIR)/unitary/ --branches --print-summary
