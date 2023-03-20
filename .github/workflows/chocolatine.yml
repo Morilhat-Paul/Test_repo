@@ -3,10 +3,10 @@ name: Epitech Criterion Actions by Morilhat Paul
 on:
   push:
     paths-ignore:
-    - 'ga-ignore-/**'
+    - "ga-ignore-/**"
   pull_request:
     paths-ignore:
-    - 'ga-ignore-/**'
+    - "ga-ignore-/**"
 
 env:
   MIRROR_URL: "${{ github.action_path }}"
@@ -17,6 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/epitech/coding-style-checker:latest
     steps:
-      - name: sheck coding-style
-        uses: ghcr.io/epitech/coding-style-checker:latest
-      - run: check.sh $(pwd) $(pwd)
+    - name: check coding-style
+      uses: ghcr.io/epitech/coding-style-checker:latest
+    - run: check.sh $(pwd) $(pwd)
