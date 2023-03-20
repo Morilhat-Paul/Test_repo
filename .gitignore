@@ -1,1 +1,6 @@
+*.o
+*.a
+*.out
+*.vscode
 *.pdf
+*.gc*
