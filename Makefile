@@ -87,10 +87,7 @@ re: fclean all
 
 tests_run: re fclean_tests
 	@-make -s -C $(TEST_DIR)/
-	@gcovr --exclude $(TEST_DIR)/unitary/
-	@gcovr --exclude $(TEST_DIR)/unitary/ --branches --print-summary
-	@make -s -C $(TEST_DIR)/ clean
-	@echo ${BOLD}${BLUE}"\n\t\t\tEND OF UNITARY TESTS !\n" ${END}
+
 
 clean_tests:
 	@make -s -C $(TEST_DIR)/ clean
