@@ -19,6 +19,6 @@ jobs:
         run: (check.sh $(pwd) $(pwd))
       - name: Get the output time
         id: time
-        run: echo "$VAR_NAME=$(time)" >> $GITHUB_OUTPUT
+        run: echo "time=$(time)" >> $GITHUB_OUTPUT
       - name: Print output time
         run: echo "The time was ${{ steps.time.outputs.time }}"
