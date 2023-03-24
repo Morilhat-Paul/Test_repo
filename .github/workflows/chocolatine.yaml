@@ -1,14 +1,24 @@
 on: [push]
 
+env:
+  MIRROR_URL: "${{ github.action_path }}"
+  EXECUTABLES: "libmy.a, libchained_list.c, libbinary_tree.a"
+
 jobs:
-  hello_world_job:
+  check_coding_style:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Checkout
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
+      volumes:
+        - "coding-style_volume:/volume_mount"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Coding style
+        run: (check.sh $(pwd) $(pwd))
       - name: Get the output time
-        id: hello
-        run: echo "time=lala" >> $GITHUB_OUTPUT
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        id: time
+        run: echo "$VAR_NAME=$(time)" >> $GITHUB_OUTPUT
+      - name: Print output time
+        run: echo "The time was ${{ steps.time.outputs.time }}"
