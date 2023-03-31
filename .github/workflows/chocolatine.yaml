@@ -37,8 +37,7 @@ jobs:
         run: make clean
       - name: Executables
         run: |
-          IFS=',' read -r -a executables <<< "$EXECUTABLES"
-          for file in "${executables[@]}"
+          for file in "$exec"
           do
             if [ ! -x "$file" ]; then
                 exit 1
