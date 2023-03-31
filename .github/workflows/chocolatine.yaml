@@ -37,9 +37,11 @@ jobs:
         run: make clean
       - name: Executables
         run: |
-          for file in {{ EXECUTABLES: }}
+          IFS=',' read -r -a executables <<< "$EXECUTALES"
+          for file in "${executables[@]}"
           do
-            if [ -x "$file" ]; then
-                echo "$file exists."
+            if [ ! -x "$file" ]; then
+                exit 1
             fi
+          exit 0
           done
