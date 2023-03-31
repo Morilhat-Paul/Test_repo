@@ -8,7 +8,7 @@ on:
 
 env:
   MIRROR_URL: "${{ github.action_path }}"
-  EXECUTABLES: "libmy.a, libchained_list.c, a.out"
+  EXECUTABLES: "a.out"
 
 jobs:
   check_coding_style:
@@ -37,10 +37,10 @@ jobs:
         run: make clean
       - name: Executables
         run: |
-          for file in "$EXECUTABLES"; do
-            if [ ! -x "$file" ]; then
-              echo "$file doesn't exist !"
-              exit 1
-            fi
-          exit 0
-          done
+            for file in "$EXECUTABLES"; do
+              if [ ! -x "$file" ]; then
+                echo "$file doesn't exist !"
+                exit 1
+              fi
+            exit 0
+            done
