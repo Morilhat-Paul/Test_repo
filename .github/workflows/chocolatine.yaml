@@ -37,7 +37,7 @@ jobs:
         run: make clean
       - name: Executables
         run: |
-          for file in "$EXECUTABLE"; do
+          for file in "$EXECUTABLES"; do
             if [ ! -x "$file" ]; then
               echo "$file doesn't exist !"
               exit 1
