@@ -1,13 +1,19 @@
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - "ga-ignore-"
+  pull_request:
+    paths-ignore:
+      - "ga-ignore-"
 
 env:
   MIRROR_URL: "${{ github.action_path }}"
-  EXECUTABLES: "libmy.a, libchained_list.c, libbinary_tree.a"
+  EXECUTABLES: "libmy.a, libchained_list.c, a.out"
 
 jobs:
   check_coding_style:
     runs-on: ubuntu-latest
-    name: Checkout
+    name: Check coding style
     container:
       image: ghcr.io/epitech/coding-style-checker:latest
       volumes:
@@ -17,8 +23,21 @@ jobs:
         uses: actions/checkout@v3
       - name: Coding style
         run: (check.sh $(pwd) $(pwd))
-      - name: Get the output time
-        id: time
-        run: echo "time=lala" >> $GITHUB_OUTPUT
-      - name: Print output time
-        run: echo "The time was ${{ steps.time.outputs.time }}"
+
+  check_program_compilation:
+    runs-on: ubuntu-latest
+    name: Compiles
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Make
+        run: make
+        timeout-minutes: 2
+      - name: Clean
+        run: make clean
+      - name: Executables
+        run: |
+          for file in {{ EXECUTABLES }}; do
+            if [ -f "$file" ]; then
+                echo "$file exists."
+            fi
