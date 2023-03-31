@@ -37,9 +37,9 @@ jobs:
         run: make clean
       - name: Executables
         run: |
-          for file in {{ EXECUTABLES }}
+          for file in {{ EXECUTABLES: }}
           do
-            if [ -f "$file" ]; then
+            if [ -x "$file" ]; then
                 echo "$file exists."
             fi
           done
