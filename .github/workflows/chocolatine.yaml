@@ -7,7 +7,7 @@ on:
       - "ga-ignore-"
 
 env:
-  MIRROR_URL: "git@github.com:Morilhat-Paul/Test_repo.git"
+  MIRROR_URL: "git@github.com:EpitechPromo2027/B-DOP-200-LYN-2-1-chocolatine-paul.morilhat.git"
   EXECUTABLES: "template"
 
 jobs:
@@ -78,8 +78,6 @@ jobs:
         uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            ssh://git-codecommit.<somewhere>.amazonaws.com/v1/repos/<target_repository_name>
+            git@gitlab.com:<username>/<target_repository_name>.git
           ssh_private_key:
-            ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY }}
-          ssh_username:
-            ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY_ID }}
+            ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
