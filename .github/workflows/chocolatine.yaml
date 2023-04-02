@@ -7,7 +7,7 @@ on:
       - "ga-ignore-"
 
 env:
-  MIRROR_URL: "${{ github.action_path }}"
+  MIRROR_URL: "git@github.com:Morilhat-Paul/Test_repo.git"
   EXECUTABLES: "template"
 
 jobs:
@@ -22,11 +22,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Coding style
-        run: (check.sh $(pwd) $(pwd))
+        run: check.sh $(pwd) $(pwd)
 
   check_program_compilation:
     runs-on: ubuntu-latest
     name: Check program compilation
+    container:
+      image: epitechcontent/epitest-docker:latest
+      volumes:
+        - "compilation-volume:/volume_mount"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -44,3 +48,17 @@ jobs:
               fi
             exit 0
             done
+
+  run_tests:
+    runs-on: ubuntu-latest
+    name: Run tests
+    container:
+      image: epitechcontent/epitest-docker:latest
+      volumes:
+        - "tests-volume:/volume_mount"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run tests
+        run: make tests_run
+        timeout-minutes: 2
