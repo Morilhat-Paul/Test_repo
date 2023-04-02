@@ -78,6 +78,6 @@ jobs:
         uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            "$MIRROR_URL"
+            git@github.com:<username>/<target_repository_name>.git
           ssh_private_key:
             ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
