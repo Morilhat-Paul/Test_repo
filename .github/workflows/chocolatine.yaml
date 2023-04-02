@@ -82,4 +82,4 @@ jobs:
           ssh_private_key:
             ${{ secrets.GIT_SSH_PRIVATE_KEY }}
           target_repo_url:
-            git@github.com:EpitechPromo2027/B-DOP-200-LYN-2-1-chocolatine-paul.morilhat.git
+            "$MIRROR_URL"
