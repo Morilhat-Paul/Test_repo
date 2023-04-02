@@ -78,6 +78,8 @@ jobs:
         uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
-            git@gitlab.com:<username>/<target_repository_name>.git
+            ssh://git-codecommit.<somewhere>.amazonaws.com/v1/repos/<target_repository_name>
           ssh_private_key:
-            ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
+            ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY }}
+          ssh_username:
+            ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY_ID }}
