@@ -84,7 +84,7 @@ re: fclean all
 ##	FILE GENERATOR	##
 
 $(TARGET_NAME): $(OBJ)
-	@$(AR) rc $(TARGET_NAME) $(OBJECT_DIR)/*.o
+	@$(AR) rc $(TARGET_NAME) $<
 	@cp $@ ..
-	@echo ${BOLD}${GREEN}\
+	@echo ${BOLD}${GREEN}	\
 	"\t=== Building chained_list\t\t"${ITALIC}"DONE !\n" ${END}
