@@ -197,4 +197,9 @@
     #define IS_LOWCASE(c) \
     (( ( (c) >= 'a' ) && ( (c) <= 'z' ) ) )
 
+    #define WRONG_POSITION \
+("my_addchar: Wrong position."   \
+" The position of the char is not between 0"  \
+" and the length of the string.\n")
+
 #endif /* MY_STRINGS_H_ */

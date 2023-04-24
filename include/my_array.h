@@ -49,4 +49,10 @@
     void my_putnarray(void *array[], void(*put_line)(void *),
                                         char separator, int n);
 
+    #define PUT_LINE_ERROR \
+"my_putarray: The pointer to the funtcion 'put_line' is NULL\n"
+
+    #define NONE_ALPHA_NUM_SEPARATOR    \
+"my_putarray: The separator is not an alphanumeric character or '\0'\n"
+
 #endif /* MY_ARRAY_H_ */

@@ -7,10 +7,8 @@
 
 #include "../../../../include/my.h"
 
-#define NOT_A_BINARY \
-"my_binary_to_decimal: The string is not a binary string"
-
-static bool error_handling(char *binary) {
+static bool error_handling(char *binary)
+{
     for (int i = 0; binary[i] != '\0'; i++) {
         if (binary[0] == '-')
             continue;

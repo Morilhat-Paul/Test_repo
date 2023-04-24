@@ -8,16 +8,12 @@
 
 #include "../../../../include/my.h"
 
-#define WRONG_POSITION(position) \
-    ("my_addchar: Wrong position."   \
-    " The position of the char is not between 0"  \
-    " and the length of the string.\n")
-
-static bool error_handling(char *str, size_t position, char *result) {
+static bool error_handling(char *str, size_t position, char *result)
+{
     char *position_str = my_nbr_to_str(position);
 
     if ((position > my_strlen(str) + 1)) {
-        my_perror(WRONG_POSITION());
+        my_perror(WRONG_POSITION);
         return (false);
     }
 

@@ -7,15 +7,9 @@
 
 #include "../../../../include/my.h"
 
-#define PUT_LINE_ERROR \
-"my_putarray: The pointer to the funtcion 'put_line' is NULL\n"
-
-#define NONE_ALPHA_NUM_SEPARATOR    \
-"my_putarray: The separator is not an alphanumeric character or '\0'\n"
-
-
 static bool error_handling(void **array,
-                void(*put_line)(void *), char separator) {
+                void(*put_line)(void *), char separator)
+{
     if (array == NULL)
         return (false);
 

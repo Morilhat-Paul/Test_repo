@@ -102,4 +102,7 @@
     #define NBR_IS_EQ(value1, value2)  \
     ((ssize_t) value1) == ((ssize_t) value2)
 
+    #define NOT_A_BINARY \
+"my_binary_to_decimal: The string is not a binary string"
+
 #endif /* MY_MATHS_H_ */
