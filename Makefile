@@ -103,9 +103,10 @@ display_test:
 	@gcovr --exclude $(TEST_DIR)/unitary/
 	@echo ${BOLD}${BLUE}"\n\t\t\tEND OF UNITARY TESTS !\n" ${END}
 
-display_all_test:
+tests_all: fclean_tests
 	@-make -s -C $(TEST_DIR)/ functional
 	@echo ${BOLD}${BLUE}"\n\t\t\tSTARTING THE UNITARY TESTS !\n" ${END}
+	@-make -s -C $(TEST_DIR)/
 	@gcovr --exclude $(TEST_DIR)/unitary/ --branches --print-summary
 	@gcovr --exclude $(TEST_DIR)/unitary/
 	@make -s -C $(TEST_DIR)/ clean
