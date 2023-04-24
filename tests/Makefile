@@ -23,11 +23,11 @@ LYELLOW	=	"\e[93m"
 
 TARGET_NAME		=	unit_tests
 PROJECT_NAME	=	template
-LIB_NAME		=	my
 SOURCE_DIR		=	../sources
 OBJECT_DIR		=	../objects
 LIBRARY_DIR		=	../lib
-LIBRARY_SRC		=	$(LIBRARY_DIR)/$(LIB_NAME)/sources
+LIBRARY_SRC_MY	=	$(LIBRARY_DIR)/my/sources
+LIBRARY_SRC_LIST=	$(LIBRARY_DIR)/chained_list/sources
 HEADER_DIR		=	../include
 CRITERION		=	--coverage -lcriterion
 ARR				=	array
@@ -53,34 +53,17 @@ LFLAGS		=	-L $(LIBRARY_DIR) -lmy	\
 
 ## 	SOURCES FILES 	##
 
-SRC_LIB	=	$(LIBRARY_SRC)/$(STR)/my_addchar.c	\
-			$(LIBRARY_SRC)/$(MAT)/my_getnbr.c	\
-			$(LIBRARY_SRC)/$(STR)/my_is_alpha.c	\
-			$(LIBRARY_SRC)/$(PUT)/my_perror.c	\
-			$(LIBRARY_SRC)/$(PUT)/my_putchar.c	\
-			$(LIBRARY_SRC)/$(PUT)/my_putnbr.c	\
-			$(LIBRARY_SRC)/$(PUT)/my_putstr.c	\
-			$(LIBRARY_SRC)/$(PUT)/my_putrevstr.c	\
-			$(LIBRARY_SRC)/$(ARR)/my_putarray.c	\
-			$(LIBRARY_SRC)/$(ARR)/my_putnarray.c	\
-			$(LIBRARY_SRC)/$(STR)/my_revstr.c	\
-			$(LIBRARY_SRC)/$(STR)/my_str_to_word_array.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strcat.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strcmp.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strcpy.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strdup.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strlen.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strncat.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strncmp.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strncpy.c	\
-			$(LIBRARY_SRC)/$(STR)/my_strstr.c	\
-			$(LIBRARY_SRC)/$(MAT)/my_nbrcmp.c	\
-			$(LIBRARY_SRC)/$(MAT)/my_absolute_nbr.c	\
-			$(LIBRARY_SRC)/my_swap.c
+SRC_LIB_MY	=	$(LIBRARY_SRC_MY)/$(STR)/*.c	\
+				$(LIBRARY_SRC_MY)/$(MAT)/*.c	\
+				$(LIBRARY_SRC_MY)/$(PUT)/*.c	\
+				$(LIBRARY_SRC_MY)/$(ARR)/*.c	\
+				# $(LIBRARY_SRC_MY)/*.c
 
-SRC		=	$(SRC_LIB)
+SRC		=	$(SRC_LIB_MY)	\
+			$(SOURCE_DIR)/is_helper.c
 
-UNIT_TESTS	=	unitary/lib/my/*.c
+UNIT_TESTS	=	unitary/lib/my/*.c	\
+				unitary/sources/*.c
 
 
 FUNC_TEST	=	functional/test.sh
@@ -103,8 +86,6 @@ ${OBJECT_DIR}/%.o : %.c
 .PHONY: all re clean fclean
 
 all: $(TARGET_NAME)
-	@./$(FUNC_TEST)
-	@echo ${BOLD}${BLUE}"\n\t\t\tSTARTING THE UNITARY TESTS !\n" ${END}
 	@./$<
 
 clean:
@@ -120,6 +101,9 @@ fclean: clean
 
 re: fclean all
 
+functional: clean
+	cp ../$(PROJECT_NAME) functional/
+	@./$(FUNC_TEST)
 
 
 ##	FILE GENERATOR	##

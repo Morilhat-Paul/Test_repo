@@ -4,4 +4,7 @@
 *.vscode
 *.pdf
 *.gc*
-objects
+
+template
+unit_tests
+.logs

@@ -1,0 +1,82 @@
+on:
+  push:
+    branches:
+      - "main"
+      - "dev"
+
+env:
+  EXECUTABLES: "template, lib/libbmy.a, lib/libchained_list.a"
+
+jobs:
+  Check_coding_style:
+    runs-on: ubuntu-latest
+    name: Check for Epitech coding-style
+    continue-on-error: false
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
+      volumes:
+        - "coding-style_volume:/volume_mount"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Coding style
+        run: |
+          check.sh $(pwd) $(pwd)
+            if [[ -s "coding-style-reports.log" ]]; then
+                while read -r line; do
+                    imp=$(echo "$line" | grep -o -E 'MAJOR|MINOR|INFO')
+                    file=$(echo "$line" | cut -d ':' -f1)
+                    linef=$(echo "$line" | cut -d ':' -f2)
+                    type=$(echo "$line" | cut -d ':' -f4)
+                    echo "::error title=$imp coding style error: $file#L$linef::$type"
+                done < coding-style-reports.log
+                exit 1
+            else
+                exit 0
+            fi
+
+  Check_program_compilation:
+    runs-on: ubuntu-latest
+    name: Check if the program compile correctly
+    needs: Check_coding_style
+    continue-on-error: false
+    container:
+      image: epitechcontent/epitest-docker:latest
+      volumes:
+        - "compilation-volume:/volume_mount"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Chech the program compilation
+        run: make
+        timeout-minutes: 2
+      - name: Check the cleaning
+        run: make clean
+      - name: Check for all executables
+        run: |
+            for file in "$EXECUTABLES"; do
+              if [ ! -x "$file" ]; then
+                echo "$file doesn't exist !"
+                exit 1
+              fi
+            exit 0
+            done
+
+  Run_tests:
+    runs-on: ubuntu-latest
+    name: Run all tests
+    needs: Check_program_compilation
+    continue-on-error: false
+    container:
+      image: epitechcontent/epitest-docker:latest
+      volumes:
+        - "tests-volume:/volume_mount"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run the unitary tests
+        run: make tests_run
+        timeout-minutes: 2
+      - name: Run the functional tests
+        run: make tests_functional
+        timeout-minutes: 2

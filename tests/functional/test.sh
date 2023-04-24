@@ -21,8 +21,9 @@ LYELLOW='\e[93m'
 
 
 ##  VARIABLES  ##
+PROJECT='template'
 FOLDER='functional'
-NAME=${FOLDER}/template
+NAME=${FOLDER}/${PROJECT}
 OUTPUT_FILE='output.txt'
 RESULT_FILE='resolve_output.txt'
 declare -i PASSED_TEST=0
@@ -50,12 +51,14 @@ start_test () {
 
     if [[ $PASSED_TEST -eq $TOTAL ]]; then
         echo -e ${BOLD}${GREEN}"\nAll tests are passed ! GG !"
+        echo -e ${BOLD}${BLUE}"\n\t\t\tEND OF FUNCTIONAL TESTS !" ${END}
     else
         let "FAILING_TEST = TOTAL - PASSED_TEST"
         echo -e ${BOLD}${LYELLOW}"\n"$FAILING_TEST "are failing and "$PASSED_TEST" are passed ..." ${END}
+        echo -e ${BOLD}${BLUE}"\n\t\t\tEND OF FUNCTIONAL TESTS !" ${END}
+        exit 1
     fi
 
-    echo -e ${BOLD}${BLUE}"\n\t\t\tEND OF FUNCTIONAL TESTS !" ${END}
 }
 
 start_test

@@ -24,4 +24,5 @@ bool my_is_prime (int nb)
         return (false);
 
     my_is_prime(n + 1);
+    return (false);
 }

@@ -1,69 +1,84 @@
 /*
 ** EPITECH PROJECT, 2022
-** Project
+** Template
 ** File description:
-** my_sort_int_array.c
+** my_str_to_word_array.c
 */
 
 #include "../../../../include/my.h"
 
-bool is_alpha(char letter)
+size_t count_words(char const *str, bool (*is_separator)(char))
 {
-    if ((letter >= 'A') & (letter <= 'Z'))
-        return (true);
-    if ((letter >= 'a') & (letter <= 'z'))
-        return (true);
-    if ((letter >= '0') & (letter <= '9'))
-        return (true);
-    if ((letter == '/') || (letter == '-')
-        || (letter == '_') || (letter == '.'))
-        return (true);
-    return (false);
-}
+    int i = 0;
+    size_t nb_word = 1;
+    int nb_separator = 0;
 
-int count_words(char const *buffer, int nbr_of_words, int x)
-{
-    if (buffer[0] == '\0')
-        return (0);
-    for (int y = 0; is_alpha(buffer[x]); y++, x++);
-    nbr_of_words++;
-    if (buffer[x] != '\0') {
-        x++;
-        nbr_of_words = count_words(buffer, nbr_of_words, x);
-    }
-    return (nbr_of_words);
-}
-
-int store_word(char *begin, char **dest)
-{
-    int len = 0;
-
-    while (is_alpha(begin[len]))
-        len++;
-    *dest = malloc(sizeof(char) * (len + 1));
-    (*dest)[len] = '\0';
-    for (int i = 0; i < len; i++)
-        (*dest)[i] = begin[i];
-    return len;
-}
-
-char **my_str_to_word_array(char *str)
-{
-    int nbr_of_words = 0;
-    int word = 0;
-    nbr_of_words = count_words(str, nbr_of_words, 0);
-    if (nbr_of_words == 0)
-        return (NULL);
-    char **array = malloc(sizeof(char *) * (nbr_of_words + 1));
-    array[nbr_of_words] = NULL;
-    for (int x = 0; str[x] != '\0';) {
-        if (!is_alpha(str[x])) {
-            x++;
-            continue;
+    while (str[i] != '\0') {
+        nb_separator = 0;
+        while (is_separator(str[i])) {
+            nb_separator++;
+            i++;
         }
-        x += store_word(&str[x], &array[word]);
-        word++;
+        if (nb_separator > 0)
+            nb_word++;
+        i++;
     }
-    array[word] = NULL;
+
+    return (nb_word);
+}
+
+size_t count_len_word(char *str, bool (*is_separator)(char))
+{
+    size_t len = 0;
+
+    while ((str[len] != '\0') && (!is_separator(str[len])))
+        len++;
+
+    return (len);
+}
+
+char * initialise_line(int lenght)
+{
+    char *str = malloc(sizeof(char) * (lenght));
+
+    for (int i = 0; i < lenght; i++)
+        str[i] = '\0';
+
+    return (str);
+}
+
+char ** store_words(char **array, char *str, bool (*is_separator)(char))
+{
+    size_t i = 0;
+    size_t line = 0;
+    size_t len_word = 0;
+
+    while (str[i] != '\0') {
+        len_word = count_len_word(&str[i], is_separator);
+        array[line] = initialise_line(len_word + 1);
+        my_strncpy(array[line], &str[i], len_word);
+        i += (len_word);
+        if (str[i] == '\0')
+            break;
+        while (is_separator(str[i]))
+            i++;
+        line++;
+    }
+
+    return (array);
+}
+
+char **my_str_to_word_array(char *str, bool (*is_separator)(char))
+{
+    size_t nb_word = count_words(str, is_separator);
+    char **array = malloc(sizeof(char *) * (nb_word + 1));
+
+    array[nb_word] = NULL;
+    if (nb_word == 1) {
+        array[0] = my_strdup(str);
+        return (array);
+    }
+    store_words(array, str, is_separator);
+
     return (array);
 }

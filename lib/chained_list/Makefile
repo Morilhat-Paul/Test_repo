@@ -49,7 +49,8 @@ SRC		=	create_node.c	\
 			pop.c	\
 			push.c	 \
 			rotate.c	\
-			swap.c
+			swap.c	\
+			len_list.c
 
 
 

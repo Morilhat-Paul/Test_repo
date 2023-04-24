@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** Bootstrap
+** Include
 ** File description:
 ** my_struct.h
 */

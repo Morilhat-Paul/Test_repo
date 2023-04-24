@@ -12,6 +12,9 @@ char * my_strstr(char *str, char const *to_find)
     int i = 0;
     int temp = 0;
 
+    if ((to_find == NULL) && (str == NULL))
+        return (NULL);
+
     while (str[i] != '\0') {
         if (to_find[temp - i] == '\0')
             return (&str[i]);
@@ -22,5 +25,6 @@ char * my_strstr(char *str, char const *to_find)
         i++;
         temp++;
     }
+
     return (NULL);
 }

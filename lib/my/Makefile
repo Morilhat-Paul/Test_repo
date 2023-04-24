@@ -47,35 +47,37 @@ CFLAGS	=	-W -Wall -Wextra -Werror	\
 
 ## 	SOURCES FILES	##
 
-SRC		=	$(STR)/my_addchar.c	\
+SRC		=	$(MAT)/my_addition.c	\
+			$(MAT)/my_binary_to_decimal.c	\
 			$(MAT)/my_getnbr.c	\
-			$(STR)/my_is_alpha.c	\
+			$(MAT)/my_is_prime.c	\
+			$(MAT)/my_multiplication.c	\
+			$(MAT)/my_nbrcmp.c	\
+			$(MAT)/my_power.c	\
+			$(MAT)/my_square_root.c	\
 			$(PUT)/my_perror.c	\
 			$(PUT)/my_putchar.c	\
 			$(PUT)/my_putnbr.c	\
 			$(PUT)/my_putstr.c	\
-			$(PUT)/my_putrevstr.c	\
-			$(ARR)/my_putarray.c	\
-			$(ARR)/my_putnarray.c	\
+			$(STR)/my_addchar.c	\
 			$(STR)/my_revstr.c	\
+			$(STR)/my_str_to_nbr.c	\
 			$(STR)/my_str_to_word_array.c	\
 			$(STR)/my_strcat.c	\
 			$(STR)/my_strcmp.c	\
 			$(STR)/my_strcpy.c	\
 			$(STR)/my_strdup.c	\
 			$(STR)/my_strlen.c	\
+			$(STR)/my_strlowcase.c	\
 			$(STR)/my_strncat.c	\
 			$(STR)/my_strncmp.c	\
 			$(STR)/my_strncpy.c	\
 			$(STR)/my_strstr.c	\
-			$(MAT)/my_nbrcmp.c	\
-			$(MAT)/my_absolute_nbr.c	\
-			$(MAT)/my_addition.c	\
-			$(MAT)/my_multiplication.c	\
-			$(MAT)/my_factoriel.c	\
-			$(ARR)/my_array.c	\
-			my_swap.c
-
+			$(STR)/my_strupcase.c	\
+			$(ARR)/my_destroy_array.c	\
+			$(ARR)/my_putarray.c	\
+			$(ARR)/my_putnarray.c	\
+			$(ARR)/my_create_array.c
 
 
 

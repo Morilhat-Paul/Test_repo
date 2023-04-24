@@ -7,17 +7,39 @@
 
 #include "../../../../include/my.h"
 
-void my_putarray(void *array[], int type)
-{
-    if (type == NBR_ARRAY)
-        for (int i = 0; array[i] != NULL; i++) {
-            my_putnbr((ssize_t) array[i]);
-            my_putchar('\n');
-        }
+#define PUT_LINE_ERROR \
+"my_putarray: The pointer to the funtcion 'put_line' is NULL\n"
 
-    if (type == STR_ARRAY)
-        for (int i = 0; array[i] != NULL; i++) {
-            my_putstr((char *) array[i]);
-            my_putchar('\n');
-        }
+#define NONE_ALPHA_NUM_SEPARATOR    \
+"my_putarray: The separator is not an alphanumeric character or '\0'\n"
+
+
+static bool error_handling(void **array, void(*put_line)(void *),
+                                                    char separator) {
+    if (array == NULL)
+        return (false);
+
+    if (put_line == NULL) {
+        my_perror(PUT_LINE_ERROR);
+        return (false);
+    }
+
+    if ((separator != '\0') && (!IS_ALPHA_NUM(separator))) {
+        my_perror(NONE_ALPHA_NUM_SEPARATOR);
+        return (false);
+    }
+
+    return (true);
+}
+
+void my_putarray(void *array[], void(*put_line)(void *), char separator)
+{
+    if (!error_handling(array, put_line, separator))
+        return;
+
+    for (int i = 0; array[i] != NULL; i++) {
+        put_line(array[i]);
+        if (separator != '\0')
+            my_putchar(separator);
+    }
 }

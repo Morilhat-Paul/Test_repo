@@ -9,10 +9,11 @@
 
 void my_putnbr(ssize_t nb)
 {
-    if (nb < 0) {
+    if (IS_NEG(nb)) {
         my_putchar('-');
         nb *= -1;
     }
+
     if (nb > 9) {
         my_putnbr(nb / 10);
         my_putnbr(nb % 10);
