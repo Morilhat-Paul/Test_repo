@@ -61,7 +61,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Run all tests
     needs: Check_program_compilation
-    continue-on-error: false
     container:
       image: epitechcontent/epitest-docker:latest
       volumes:

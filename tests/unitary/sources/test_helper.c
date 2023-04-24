@@ -20,5 +20,5 @@ Test (helper, false) {
     int ac = 2;
     char *arg = "-pash";
 
-    cr_assert_eq(is_helper(arg), true);
+    cr_assert_eq(is_helper(arg), false);
 }
