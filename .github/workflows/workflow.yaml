@@ -21,19 +21,13 @@ jobs:
         uses: actions/checkout@v3
       - name: Coding style
         run: |
-          check.sh $(pwd) $(pwd)
-            if [[ -s "coding-style-reports.log" ]]; then
-                while read -r line; do
-                    imp=$(echo "$line" | grep -o -E 'MAJOR|MINOR|INFO')
-                    file=$(echo "$line" | cut -d ':' -f1)
-                    linef=$(echo "$line" | cut -d ':' -f2)
-                    type=$(echo "$line" | cut -d ':' -f4)
-                    echo "::error title=$imp coding style error: $file#L$linef::$type"
-                done < coding-style-reports.log
-                exit 1
-            else
-                exit 0
-            fi
+            check.sh $(pwd) $(pwd)
+            echo "error_style_count=$(wc -l coding-style-reports.log | cut -d" " -f1)" >> "$GITHUB_OUTPUT"
+      - name: show error
+        if: steps.run-coding-style.outputs.error_style_count > 0
+        run: |
+          awk -F":" '{print "::error file="$1",line="$2",title="$3" coding style error::"$4}' coding-style-reports.log
+          exit 1
 
   Check_program_compilation:
     runs-on: ubuntu-latest
