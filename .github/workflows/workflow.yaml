@@ -69,8 +69,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run the unitary tests
-        run: make tests_run
+        run: make re tests_run
         timeout-minutes: 2
       - name: Run the functional tests
-        run: make tests_functional
+        run: make re tests_functional
         timeout-minutes: 2
