@@ -5,7 +5,7 @@ on:
       - "dev"
 
 env:
-  EXECUTABLES: "template, lib/libbmy.a, lib/libchained_list.a"
+  EXECUTABLES: "template,lib/libmy.a,lib/libchained_list.a"
 
 jobs:
   Check_coding_style:
