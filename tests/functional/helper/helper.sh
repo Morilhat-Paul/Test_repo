@@ -32,18 +32,18 @@ test_helper () {
     OUTPUT+="/${OUTPUT_FILE}"
     FLAG=0
 
-    ./${NAME} -h > ${OUTPUT}
+    ./${NAME} -h &> ${OUTPUT}
 
     if [[ $? -eq 0 ]]; then
         if diff -u "${OUTPUT}" "${RESULT}"; then
-            echo -e ${PURPLE}"01 - "${GREEN}"${TEST} test passed !"${END}
+            echo -e ${PURPLE}${GREEN}"${TEST} test passed !"${END}
             return $PASSED
         else
-            echo -e ${PURPLE}"01 - "${LYELLOW}"${TEST} test failed ! (Output)"${END}
+            echo -e ${PURPLE}${LYELLOW}"${TEST} test failed ! (Output)"${END}
             return $FAILED
         fi
     else
-        echo -e ${PURPLE}"01 - "${LYELLOW}"${TEST} test failed ! (Return)"${END}
+        echo -e ${PURPLE}${LYELLOW}"${TEST} test failed ! (Return)"${END}
         return $FAILED
     fi
     return $PROBLEM

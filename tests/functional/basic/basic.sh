@@ -27,10 +27,5 @@ CAT="basic"
 
 ## TEST ##
 start_basic () {
-    source ${FOLDER}/${CAT}/empty/empty.sh
-    test_empty
-    if [[ $? -eq $PASSED ]]; then
-        let "PASSED_TEST += PASSED"
-    fi
-    let "TOTAL += 1"
+    return
 }

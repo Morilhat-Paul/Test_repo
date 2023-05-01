@@ -8,10 +8,12 @@
 #include <criterion/criterion.h>
 #include "my.h"
 
-Test (my_swap_nbr, basic) {
+Test (swap, number) {
     ssize_t nbr1 = 42;
     ssize_t nbr2 = 84;
-    my_swap_nbr(&nbr1, &nbr2);
+
+    SWAP(nbr1, nbr2);
+
     cr_assert_eq(nbr1, 84);
     cr_assert_eq(nbr2, 42);
 }

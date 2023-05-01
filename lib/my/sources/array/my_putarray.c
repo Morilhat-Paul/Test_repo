@@ -7,17 +7,33 @@
 
 #include "../../../../include/my.h"
 
-void my_putarray(void *array[], int type)
+static bool error_handling(void **array, void(*put_line)(void *),
+                                                char separator)
 {
-    if (type == NBR_ARRAY)
-        for (int i = 0; array[i] != NULL; i++) {
-            my_putnbr((ssize_t) array[i]);
-            my_putchar('\n');
-        }
+    if (array == NULL)
+        return (false);
 
-    if (type == STR_ARRAY)
-        for (int i = 0; array[i] != NULL; i++) {
-            my_putstr((char *) array[i]);
-            my_putchar('\n');
-        }
+    if (put_line == NULL) {
+        my_perror(PUT_LINE_ERROR);
+        return (false);
+    }
+
+    if ((separator != '\0') && (!IS_ALPHA_NUM(separator))) {
+        my_perror(NONE_ALPHA_NUM_SEPARATOR);
+        return (false);
+    }
+
+    return (true);
+}
+
+void my_putarray(void *array[], void(*put_line)(void *), char separator)
+{
+    if (!error_handling(array, put_line, separator))
+        return;
+
+    for (int i = 0; array[i] != NULL; i++) {
+        put_line(array[i]);
+        if (separator != '\0')
+            my_putchar(separator);
+    }
 }

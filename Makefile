@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2022
-## Project
+## Lem_in
 ## File description:
 ## Makefile
 ##
@@ -29,6 +29,7 @@ LIBRARY_DIR		=	lib
 HEADER_DIR		=	include
 TEST_DIR		= 	tests
 
+
 vpath %.c $(SOURCE_DIR)
 
 
@@ -43,14 +44,16 @@ CFLAGS		=	-W -Wall -Wextra -Werror	\
 				-Wno-unused-but-set-variable	\
 				-Wno-unused-but-set-parameter	\
 				-g3
-LFLAGS		=	-L $(LIBRARY_DIR) -lmy	\
-				-L $(LIBRARY_DIR) -lchained_list
+LFLAGS		= 	-L $(LIBRARY_DIR) -lchained_list	\
+				-L $(LIBRARY_DIR) -lmy	\
 
 
 
 ## 	SOURCES FILES 	##
 
-SRC		=	main.c
+SRC		=	main.c	\
+			is_helper.c	\
+			template.c
 
 
 
@@ -85,9 +88,29 @@ fclean: clean
 
 re: fclean all
 
-tests_run: re fclean_tests
-	@-make -s -C $(TEST_DIR)/
+tests_run: fclean_tests
+	@echo ${BOLD}${BLUE}"\n\t\t\tSTARTING THE UNITARY TESTS !\n" ${END}
+	@make -s -C $(TEST_DIR)/ ||	\
+	(echo ${BOLD}${BLUE}"\n\t\t\tEND OF UNITARY TESTS !\n" ${END} && exit 1)
+	@echo ${BOLD}${BLUE}"\n\t\t\tEND OF UNITARY TESTS !\n" ${END}
 
+tests_functional:
+	@make -s -C $(TEST_DIR)/ functional
+
+display_test:
+	@echo ${BOLD}${BLUE}"\n\t\t\tSTARTING THE UNITARY TESTS !\n" ${END}
+	@gcovr --exclude $(TEST_DIR)/unitary/ --branches --print-summary
+	@gcovr --exclude $(TEST_DIR)/unitary/
+	@echo ${BOLD}${BLUE}"\n\t\t\tEND OF UNITARY TESTS !\n" ${END}
+
+tests_all: fclean_tests
+	@-make -s -C $(TEST_DIR)/ functional
+	@echo ${BOLD}${BLUE}"\n\t\t\tSTARTING THE UNITARY TESTS !\n" ${END}
+	@-make -s -C $(TEST_DIR)/
+	@gcovr --exclude $(TEST_DIR)/unitary/ --branches --print-summary
+	@gcovr --exclude $(TEST_DIR)/unitary/
+	@make -s -C $(TEST_DIR)/ clean
+	@echo ${BOLD}${BLUE}"\n\t\t\tEND OF UNITARY TESTS !\n" ${END}
 
 clean_tests:
 	@make -s -C $(TEST_DIR)/ clean

@@ -7,9 +7,9 @@
 
 #include "../../../../include/my.h"
 
-size_t my_getnbr(char const *str)
+ssize_t my_getnbr(char const *str)
 {
-    size_t nb = 0;
+    ssize_t nb = 0;
     int isneg = 1;
     int i = 0;
 
@@ -24,5 +24,6 @@ size_t my_getnbr(char const *str)
             nb *= 10;
             nb += str[i] - 48;
         }
+
     return (nb * isneg);
 }
