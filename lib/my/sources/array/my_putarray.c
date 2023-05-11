@@ -13,6 +13,9 @@ static bool error_handling(void **array, void(*put_line)(void *),
     if (array == NULL)
         return (false);
 
+    if (IS_SPACES(separator))
+        return (true);
+
     if (put_line == NULL) {
         my_perror(PUT_LINE_ERROR);
         return (false);

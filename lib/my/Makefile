@@ -72,6 +72,7 @@ SRC		=	$(MAT)/my_addition.c	\
 			$(STR)/my_strncat.c	\
 			$(STR)/my_strncmp.c	\
 			$(STR)/my_strncpy.c	\
+			$(STR)/my_strndup.c	\
 			$(STR)/my_strstr.c	\
 			$(STR)/my_strupcase.c	\
 			$(ARR)/my_destroy_array.c	\

@@ -188,6 +188,12 @@
 || ( ( (c) >= '0' ) && ( (c) <= '9' ) ))
 
     /* Macro for verify if a character
+    ** is a spaces, a tabs or a '\n' */
+    #define IS_SPACES(c)   \
+    ( ( (c) == ' ' ) || ( (c) == '\t' ) \
+|| ( (c) == '\n' ) )
+
+    /* Macro for verify if a character
     ** is upcase */
     #define IS_UPCASE(c) \
     (( ( (c) >= 'A' ) && ( (c) <= 'Z' ) ) )
