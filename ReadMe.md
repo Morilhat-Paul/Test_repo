@@ -17,8 +17,8 @@
 </p>
 <p align="center">
   <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/Morilhat-Paul/Template?style=plastic">
-  <a href="https://www.codefactor.io/repository/github/morilhat-paul/template"><img src="https://www.codefactor.io/repository/github/morilhat-paul/template/badge" alt="CodeFactor" /></a>
-  <a href="https://github.com/Morilhat-Paul/Template/actions?query=workflows%3workflow"><img src="https://github.com/Morilhat-Paul/Template/workflows/Workflow/badge.svg" /></a>
+  <a href="https://www.codefactor.io/repository/github/morilhat-paul/Test_repo"><img src="https://www.codefactor.io/repository/github/morilhat-paul/Test_repo/badge" alt="CodeFactor" /></a>
+  <a href="https://github.com/Morilhat-Paul/Test_repo/actions?query=workflows%3workflow"><img src="https://github.com/Morilhat-Paul/Test_repo/workflows/Workflow/badge.svg" /></a>
 </p>
 
 &nbsp;
