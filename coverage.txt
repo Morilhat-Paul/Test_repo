@@ -1,0 +1,46 @@
+------------------------------------------------------------------------------
+                           GCC Code Coverage Report
+Directory: .
+------------------------------------------------------------------------------
+File                                       Lines    Exec  Cover   Missing
+------------------------------------------------------------------------------
+lib/my/sources/array/my_create_array.c         8       8   100%   
+lib/my/sources/array/my_destroy_array.c        6       6   100%   
+lib/my/sources/array/my_putarray.c            17      17   100%   
+lib/my/sources/array/my_putnarray.c           17      17   100%   
+lib/my/sources/maths/my_addition.c             9       9   100%   
+lib/my/sources/maths/my_binary_to_decimal.c
+                                              17      17   100%   
+lib/my/sources/maths/my_getnbr.c              14      14   100%   
+lib/my/sources/maths/my_is_prime.c            12      11    91%   26
+lib/my/sources/maths/my_multiplication.c       9       9   100%   
+lib/my/sources/maths/my_nbrcmp.c               6       6   100%   
+lib/my/sources/maths/my_power.c                6       6   100%   
+lib/my/sources/maths/my_square_root.c          6       6   100%   
+lib/my/sources/put/my_perror.c                 3       3   100%   
+lib/my/sources/put/my_putchar.c                3       3   100%   
+lib/my/sources/put/my_putnbr.c                 9       9   100%   
+lib/my/sources/put/my_putstr.c                 3       3   100%   
+lib/my/sources/strings/my_addchar.c           23      21    91%   19-20
+lib/my/sources/strings/my_nbr_to_str.c        22      22   100%   
+lib/my/sources/strings/my_revstr.c            13      13   100%   
+lib/my/sources/strings/my_str_to_word_array.c
+                                              49      49   100%   
+lib/my/sources/strings/my_strcat.c            14      14   100%   
+lib/my/sources/strings/my_strcmp.c            19      19   100%   
+lib/my/sources/strings/my_strcpy.c             8       8   100%   
+lib/my/sources/strings/my_strdup.c             6       6   100%   
+lib/my/sources/strings/my_strlen.c             7       7   100%   
+lib/my/sources/strings/my_strlowcase.c         9       9   100%   
+lib/my/sources/strings/my_strncat.c           17      17   100%   
+lib/my/sources/strings/my_strncmp.c           19      19   100%   
+lib/my/sources/strings/my_strncpy.c            9       9   100%   
+lib/my/sources/strings/my_strndup.c            6       6   100%   
+lib/my/sources/strings/my_strstr.c            14      14   100%   
+lib/my/sources/strings/my_strupcase.c          9       9   100%   
+sources/is_helper.c                            4       4   100%   
+sources/main.c                                 5       0     0%   10,12-14,16
+sources/template.c                             2       0     0%   10,12
+------------------------------------------------------------------------------
+TOTAL                                        400     390    97%
+------------------------------------------------------------------------------

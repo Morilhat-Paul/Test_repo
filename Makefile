@@ -123,8 +123,8 @@ tests_functional:
 
 display_test:
 	@$(PRINT) ${START_UNITARY_TESTS}
-	@$(GCOVR) ${TEST_DIR}/unitary/ --branches --print-summary --keep
-	@$(GCOVR) ${TEST_DIR}/unitary/ --keep
+	@$(GCOVR) ${TEST_DIR}/unitary/ --branches --print-summary --keep --output=coverage_branches.txt
+	@$(GCOVR) ${TEST_DIR}/unitary/ --keep --output=coverage.txt
 	@$(PRINT) ${END_UNITARY_TESTS}
 
 tests_all: fclean_tests
