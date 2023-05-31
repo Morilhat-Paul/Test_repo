@@ -62,6 +62,7 @@ CFLAGS		=	-W -Wall -Wextra -Werror	\
 				-Wno-unused-parameter	\
 				-Wno-unused-but-set-variable	\
 				-Wno-unused-but-set-parameter	\
+				-fprofile-arcs -ftest-coverage	\
 				-g3
 LFLAGS		= 	-L ${LIBRARY_DIR} -lchained_list	\
 				-L ${LIBRARY_DIR} -lmy
@@ -122,8 +123,8 @@ tests_functional:
 
 display_test:
 	@$(PRINT) ${START_UNITARY_TESTS}
-	@$(GCOVR) ${TEST_DIR}/unitary/ --branches --print-summary
-	@$(GCOVR) ${TEST_DIR}/unitary/
+	@$(GCOVR) ${TEST_DIR}/unitary/ --branches --print-summary --txt
+	@$(GCOVR) ${TEST_DIR}/unitary/ --txt
 	@$(PRINT) ${END_UNITARY_TESTS}
 
 tests_all: fclean_tests
