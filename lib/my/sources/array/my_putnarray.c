@@ -18,8 +18,8 @@ static bool error_handling(void **array,
         return (false);
     }
 
-    if ((separator != '\0') && (!IS_ALPHA_NUM(separator))) {
-        my_perror(NONE_ALPHA_NUM_SEPARATOR);
+    if ((separator != '\0') && (!IS_SPACES(separator))) {
+        my_perror(NONE_SPACES_SEPARATOR);
         return (false);
     }
 

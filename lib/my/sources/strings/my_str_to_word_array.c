@@ -19,6 +19,8 @@ size_t count_words(char const *str, bool (*is_separator)(char))
             nb_separator++;
             i++;
         }
+        if (str[i] == '\0')
+            return (0);
         if (nb_separator > 0)
             nb_word++;
         i++;
@@ -60,6 +62,10 @@ char ** store_words(char **array, char *str, bool (*is_separator)(char))
 char **my_str_to_word_array(char *str, bool (*is_separator)(char))
 {
     size_t nb_word = count_words(str, is_separator);
+
+    if (nb_word <= 0)
+        return (NULL);
+
     char **array = malloc(sizeof(char *) * (nb_word + 1));
 
     array[nb_word] = NULL;

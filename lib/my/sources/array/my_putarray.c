@@ -13,16 +13,13 @@ static bool error_handling(void **array, void(*put_line)(void *),
     if (array == NULL)
         return (false);
 
-    if (IS_SPACES(separator))
-        return (true);
-
     if (put_line == NULL) {
         my_perror(PUT_LINE_ERROR);
         return (false);
     }
 
-    if ((separator != '\0') && (!IS_ALPHA_NUM(separator))) {
-        my_perror(NONE_ALPHA_NUM_SEPARATOR);
+    if ((separator != '\0') && (!IS_SPACES(separator))) {
+        my_perror(NONE_SPACES_SEPARATOR);
         return (false);
     }
 
