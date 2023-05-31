@@ -5,7 +5,7 @@
 ** my_putnarray.c
 */
 
-#include "../../../../include/my.h"
+#include "my.h"
 
 static bool error_handling(void **array,
                 void(*put_line)(void *), char separator)
@@ -31,7 +31,7 @@ void my_putnarray(void *array[], void(*put_line)(void *), char separator, int n)
     if (!error_handling(array, put_line, separator))
         return;
 
-    for (int i = 0; (array[i] != NULL) && (i < n); i++) {
+    for (int i = 0; (array[i]) && (i < n); i++) {
         put_line(array[i]);
         if (separator != '\0')
             my_putchar(separator);

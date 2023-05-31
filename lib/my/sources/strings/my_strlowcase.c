@@ -5,7 +5,7 @@
 ** my_strupcase.c
 */
 
-#include "../../../../include/my.h"
+#include "my.h"
 
 char * my_strlowcase(char *str)
 {

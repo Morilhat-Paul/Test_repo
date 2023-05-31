@@ -5,21 +5,20 @@
 ** my_strncpy.c
 */
 
-#include "../../../../include/my.h"
+#include "my.h"
 
 char * my_strncpy(char *dest, char const *src, int n)
 {
-    int nb = 0;
     int i = 0;
 
-    while (src[nb] != '\0')
-        nb++;
-    while (i != n) {
+    if ((!src) || (n == 0))
+        return (dest);
+
+    while ((src[i] != '\0') && (i < n)) {
         dest[i] = src[i];
         i++;
     }
-    if (n > nb)
-        dest[i] = '\0';
+    dest[i] = '\0';
 
     return (dest);
 }

@@ -5,7 +5,7 @@
 ** my_putarray.c
 */
 
-#include "../../../../include/my.h"
+#include "my.h"
 
 static bool error_handling(void **array, void(*put_line)(void *),
                                                 char separator)

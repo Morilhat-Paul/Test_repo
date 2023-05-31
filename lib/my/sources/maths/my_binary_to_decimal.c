@@ -5,7 +5,7 @@
 ** my_binary_to_decimal.c
 */
 
-#include "../../../../include/my.h"
+#include "my.h"
 
 static bool error_handling(char *binary)
 {
