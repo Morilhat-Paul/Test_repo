@@ -74,26 +74,3 @@ jobs:
       - name: Run the functional tests
         run: make re tests_functional
         timeout-minutes: 2
-
-  Upload_tests:
-    runs-on: ubuntu-latest
-    name: Upload the coverage of unit-tests
-    needs: Run_tests
-    container:
-      image: epitechcontent/epitest-docker:latest
-      volumes:
-        - "tests-volume:/upload_volume_mount"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Run the unitary tests
-        run: make re tests_run display_test
-        timeout-minutes: 2
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./tests/
-          flags: unit-tests
-          gcov: true
-          fail_ci_if_error: true
