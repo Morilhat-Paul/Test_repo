@@ -131,6 +131,6 @@ jobs:
           label: Hello
           message: ${{ env.COVERAGE_BRANCHES }}
           valColorRange: ${{ env.COVERAGE_BRANCHES }}
-          orangeminColorRange: 50
+          minColorRange: 50
           maxColorRange: 90
           forceUpdate: true
