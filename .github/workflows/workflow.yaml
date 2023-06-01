@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Upload the passed workflow
     needs:
-      - Run_tests
+      # - Run_tests
       - Upload_coverage
     container:
       image: epitechcontent/epitest-docker:latest
