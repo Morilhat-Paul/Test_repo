@@ -18,7 +18,7 @@
 <p align="center">
   <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/Morilhat-Paul/Template?style=plastic">
   <a href="https://github.com/Morilhat-Paul/Test_repo/actions/workflows/workflow.yaml"><img src="https://github.com/Morilhat-Paul/Test_repo/actions/workflows/workflow.yaml/badge.svg" /></a>
-  <a href="https://github.com/Morilhat-Paul/Test_repo/actions/workflows/workflow.yaml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fshields-badge-xyz123.herokuapp.com%2Fbadge%2FCoverage%2F{{ env.COVERAGE_PERCENTAGE }}%2Fbrightgreen">
+  <a href="https://github.com/Morilhat-Paul/Test_repo/actions/workflows/workflow.yaml"><img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fshields-badge-xyz123.herokuapp.com%2Fbadge%2FCoverage%2F${{ env.COVERAGE_PERCENTAGE }}%2Fbrightgreen">
 </a>
 
 </p>
