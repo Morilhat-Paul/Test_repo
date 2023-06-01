@@ -122,15 +122,28 @@ jobs:
           echo "COVERAGE_BRANCHES=$coverage_branches" >> $GITHUB_ENV
           echo "COVERAGE=$coverage" >> $GITHUB_ENV
 
-      - name: Create Awesome Badge
+      - name: Create coverage branche badge
         uses: schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ef0cca4079ae9a36ebea3cbdd3b1c4d4
           filename: coverage_branches.json
-          label: Hello
+          label: Coverage branches
           message: ${{ env.COVERAGE_BRANCHES }}
           valColorRange: ${{ env.COVERAGE_BRANCHES }}
+          minColorRange: 50
+          maxColorRange: 90
+          forceUpdate: true
+
+      - name: Create coverage badge
+        uses: schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_SECRET_LINES }}
+          gistID: 5aefbeb214141a920be299077e83b91f
+          filename: coverage.json
+          label: Coverage
+          message: ${{ env.COVERAGE }}
+          valColorRange: ${{ env.COVERAGE }}
           minColorRange: 50
           maxColorRange: 90
           forceUpdate: true
