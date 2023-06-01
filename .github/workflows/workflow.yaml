@@ -8,26 +8,26 @@ env:
   EXECUTABLES: "template, lib/libmy.a, lib/libchained_list.a"
 
 jobs:
-#   Check_coding_style:
-#     runs-on: ubuntu-latest
-#     name: Check for Epitech coding-style
-#     continue-on-error: false
-#     container:
-#       image: ghcr.io/epitech/coding-style-checker:latest
-#       volumes:
-#         - "coding-style_volume:/volume_mount"
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v3
-#       - name: Coding style
-#         run: |
-#             check.sh $(pwd) $(pwd)
-#             echo "error_style_count=$(wc -l coding-style-reports.log | cut -d" " -f1)" >> "$GITHUB_OUTPUT"
-#       - name: show error
-#         if: steps.run-coding-style.outputs.error_style_count > 0
-#         run: |
-#           awk -F":" '{print "::error file="$1",line="$2",title="$3" coding style error::"$4}' coding-style-reports.log
-#           exit 1
+  Check_coding_style:
+    runs-on: ubuntu-latest
+    name: Check for Epitech coding-style
+    continue-on-error: false
+    container:
+      image: ghcr.io/epitech/coding-style-checker:latest
+      volumes:
+        - "coding-style_volume:/volume_mount"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Coding style
+        run: |
+            check.sh $(pwd) $(pwd)
+            echo "error_style_count=$(wc -l coding-style-reports.log | cut -d" " -f1)" >> "$GITHUB_OUTPUT"
+      - name: show error
+        if: steps.run-coding-style.outputs.error_style_count > 0
+        run: |
+          awk -F":" '{print "::error file="$1",line="$2",title="$3" coding style error::"$4}' coding-style-reports.log
+          exit 1
 
 #   Check_program_compilation:
 #     runs-on: ubuntu-latest
