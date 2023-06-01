@@ -127,7 +127,7 @@ jobs:
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: ef0cca4079ae9a36ebea3cbdd3b1c4d4
-          filename: coverag_branches.json
+          filename: coverage_branches.json
           label: Hello
           message: ${{ env.COVERAGE_BRANCHES }}
           valColorRange: ${{ env.COVERAGE_BRANCHES }}
