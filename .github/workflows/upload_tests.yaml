@@ -7,7 +7,6 @@ jobs:
   Upload_coverage:
     runs-on: ubuntu-latest
     name: Upload coverage tests to Codecov.io
-    needs: Run_tests
     container:
       image: epitechcontent/epitest-docker:latest
       volumes:
