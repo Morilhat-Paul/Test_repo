@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2022
-## Lem_in
+## Template
 ## File description:
 ## Makefile
 ##
@@ -22,7 +22,7 @@ LYELLOW	=	"\e[93m"
 
 ## 		OPTIONS 	##
 
-VERSION 			:=	$(shell git describe --tags --always)
+VERSION 			:=	$(shell git describe --tags --abbrev=0)
 VERSION_HEADER		=	include/version.h
 TARGET_NAME			=	template
 SOURCE_DIR			=	sources
@@ -41,6 +41,7 @@ PRINT				=	echo
 vpath %.c $(SOURCE_DIR)
 
 
+
 ## PRINTING ##
 
 BUILD_DONE		= 	${BOLD}${GREEN}"=== Building\t\t\t\t"${ITALIC}"DONE !"			${END}
@@ -50,6 +51,7 @@ CLEAN_OBJ		= 	${BOLD}${GREEN}"=== Cleaning object\t\t\t\t"${ITALIC}"DONE !"	${EN
 COMPILING		= 	${BOLD}${PURPLE}"=== Compiling $<"								$(END)
 START_UNITARY	= 	${BOLD}${BLUE}"\n\t\t\tSTARTING THE UNITARY TESTS !\n"			${END}
 END_UNITARY		= 	${BOLD}${BLUE}"\n\t\t\tEND OF UNITARY TESTS !\n"				${END}
+HEADER			=	"/*\n** EPITECH PROJECT, 2022\n** Template\n** File description:\n** version.h\n*/\n"
 
 
 
@@ -62,7 +64,6 @@ CFLAGS		=	-W -Wall -Wextra -Werror	\
 				-Wno-unused-parameter	\
 				-Wno-unused-but-set-variable	\
 				-Wno-unused-but-set-parameter	\
-				-fprofile-arcs -ftest-coverage	\
 				-g3
 LFLAGS		= 	-L ${LIBRARY_DIR} -lchained_list	\
 				-L ${LIBRARY_DIR} -lmy
@@ -98,7 +99,8 @@ version.h:
 	@$(PRINT) $(VERSION)
 
 version: version.h
-	@$(PRINT) "#define PROJECT_VERSION \"$(VERSION)\"" > ${VERSION_HEADER}
+	@$(PRINT) ${HEADER} > ${VERSION_HEADER}
+	@$(PRINT) "#define PROJECT_VERSION \"$(VERSION)\"" >> ${VERSION_HEADER}
 
 clean:
 	@$(MAKE) ${LIBRARY_DIR} clean
@@ -123,8 +125,14 @@ tests_functional:
 
 display_test:
 	@$(PRINT) ${START_UNITARY_TESTS}
-	@$(GCOVR) ${TEST_DIR}/unitary/ --branches --print-summary --keep --output=coverage_branches.txt
-	@$(GCOVR) ${TEST_DIR}/unitary/ --keep --output=coverage.txt
+	@$(GCOVR) ${TEST_DIR}/unitary/ --branches --print-summary
+	@$(GCOVR) ${TEST_DIR}/unitary/
+	@$(PRINT) ${END_UNITARY_TESTS}
+
+upload_test:
+	@$(PRINT) ${START_UNITARY_TESTS}
+	@$(GCOVR) ${TEST_DIR}/unitary/ --branches --print-summary --keep --output=${TEST_DIR}/coverage_branches.txt
+	@$(GCOVR) ${TEST_DIR}/unitary/ --keep --output=${TEST_DIR}/coverage.txt
 	@$(PRINT) ${END_UNITARY_TESTS}
 
 tests_all: fclean_tests
